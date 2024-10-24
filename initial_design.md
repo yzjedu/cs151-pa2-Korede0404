@@ -38,16 +38,6 @@
     3. Return choice
 
 
-* Purpose: Check if the game has ended
-* Name: end_check
-* Parameter(s): Number of sticks on the table, the amount of sticks the current player has taken
-* Return: True if the number of sticks on the table minus the player's choice is less than or equal to 0 and False if otherwise
-* Algorithm:
-    1. if the number of sticks on the table minus the player's current choice is less than or equal to 0
-        1. return true
-    2. Otherwise
-       1. Return false
-
 
 * Purpose: Allow the program to run
 * Name: main
@@ -60,8 +50,11 @@
        3. table_sticks which equals 0
        4. player_one_lose which equals 0
        5. player_two_lose which equals 0
-       6. cpu_wins which equals 0
-       7. game_status which equals an empty string
+       6. cpu_lose which equals 0
+       7. player_one_sticks which equals 0
+       8. player_two sticks which equals 0
+       9. cpu_sticks which equals 0
+       10. game_status which equals an empty string
     2. Output intro message welcoming user to the program and introduces the CPU player
     3. Prompt player one to enter their name and set the string equal to player_one_name
     4. Prompt player two to enter their name and set the string equal to player_two_name
@@ -72,7 +65,32 @@
     8. Convert game_status to lowercase
     9. While game_status is not start and end
        1. Tell the user that their input is invalid and ask them to input start or end
+       2. Convert game_status to lowercase
     10. While game_status is not "end"
-        1. If end_check(table_sticks, player_one_turn) = 0
+        1. Player 1 takes the sticks that they want using the player_one_turn function (the result is set to player_one_sticks)
+        2. If sticks is 0
            1. Add 1 to player_one_lose
            2. Print that player one lost using their name
+           3. Ask the user if they want to play again (Start or End) and game_status equal to that input
+           4. Convert game_status to lowercase
+           5. While game_status is not "start" and "end
+              1. Output error message and ask the user if they want to play again (Start or End)
+              2. Convert game_status to lowercase
+        3. Player 2 takes the sticks that they want using the player_two_turn function (the result is set to player_two_sticks)
+        4. If sticks is 0
+           1. Add 1 to player_two_lose
+           2. Print that player two lost using their name
+           3. Ask the user if they want to play again (Start or End) and game_status equal to that input
+           4. Convert game_status to lowercase
+           5. While game_status is not "start" and "end
+              1. Output error message and ask the user if they want to play again (Start or End)
+              2. Convert game_status to lowercase
+        5. Cpu takes the sticks that they want using the cpu_turn function (the result is set to cpu_sticks)
+        6. If sticks is 0
+           1. Add 1 to cpu_lose
+           2. Print that the CPU lost using their name
+           3. Ask the user if they want to play again (Start or End) and game_status equal to that input
+           4. Convert game_status to lowercase
+           5. While game_status is not "start" and "end
+              1. Output error message and ask the user if they want to play again (Start or End)
+              2. Convert game_status to lowercase
