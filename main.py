@@ -70,66 +70,48 @@ def main():
     print("Alright, let's start!")
     print("")
     while game_status != "end":
-        display_name(player_one_name)
-        take = player_turn()
-        table_sticks -= take
-        display_take(player_one_name, take, table_sticks)
-        if table_sticks <= 0:
-            player_one_lose +=1
-            print(player_one_name + " has lost.\n")
-            display_score(player_one_name, player_one_lose, player_two_name, player_two_lose, cpu_name, cpu_lose)
-            game_status = str(input("Would you like to play again? (Please input either Start or End) "))
-            game_status = game_status.lower()
-            while game_status != "start" and game_status != "end":
-                game_status = str(input("Sorry, that isn't an answer I'm looking for. Do you want to play again? (Please input either Start or End) "))
-                game_status = game_status.lower()
-            print("")
-            table_sticks = int(input("How many sticks do you want on the table this time?: "))
-            while table_sticks < 10 or table_sticks > 100:
-                table_sticks = int(input("You can't have that many sticks on the table. How many sticks do you want on the table?: "))
-            print("")
-            print("Let's go again!\n")
-
-        display_name(player_two_name)
-        take = player_turn()
-        table_sticks -= take
-        display_take(player_two_name, take, table_sticks)
-        if table_sticks <= 0:
-            player_two_lose += 1
-            print(player_two_name + " has lost.\n")
-            display_score(player_one_name, player_one_lose, player_two_name, player_two_lose, cpu_name, cpu_lose)
-            game_status = str(input("Would you like to play again? (Please input either Start or End) "))
-            game_status = game_status.lower()
-            while game_status != "start" and game_status != "end":
-                game_status = str(input("Sorry, that isn't an answer I'm looking for. Do you want to play again? (Please input either Start or End) "))
-                game_status = game_status.lower()
-            print("")
-            table_sticks = int(input("How many sticks do you want on the table this time?: "))
-            while table_sticks < 10 or table_sticks > 100:
-                table_sticks = int(input("You can't have that many sticks on the table. How many sticks do you want on the table?: "))
-            print("")
-            print("Let's go again!\n")
-
-        display_name(cpu_name)
-        take = cpu_turn(table_sticks)
-        table_sticks -= take
-        display_take(cpu_name, take, table_sticks)
+        while table_sticks > 0:
+            if table_sticks > 0:
+                cpu_take = 0
+                display_name(player_one_name)
+                take1  = player_turn()
+                table_sticks -= take1
+                display_take(player_one_name, take1, table_sticks)
+            if table_sticks > 0:
+                take1 = 0
+                display_name(player_two_name)
+                take2 = player_turn()
+                table_sticks -= take2
+                display_take(player_two_name, take2, table_sticks)
+            if table_sticks > 0:
+                take2 = 0
+                display_name(cpu_name)
+                cpu_take = cpu_turn(table_sticks)
+                table_sticks -= cpu_take
+                display_take(cpu_name, cpu_take, table_sticks)
         print("")
-        if table_sticks <= 0:
+        if take1 != 0:
+            player_one_lose += 1
+        elif take2 != 0:
+            player_two_lose += 1
+        elif cpu_take != 0:
             cpu_lose += 1
-            print("Comedy has lost.\n")
-            display_score(player_one_name, player_one_lose, player_two_name, player_two_lose, cpu_name, cpu_lose)
-            game_status = str(input("Would you like to play again? (Please input either Start or End) "))
+        display_score(player_one_name, player_one_lose, player_two_name, player_two_lose, cpu_name, cpu_lose)
+        game_status = str(input("Would you like to play again? (Please input either Start or End) "))
+        game_status = game_status.lower()
+        while game_status != "start" and game_status != "end":
+            game_status = str(input(
+                "Sorry, that isn't an answer I'm looking for. Do you want to play again? (Please input either Start or End) "))
             game_status = game_status.lower()
-            while game_status != "start" and game_status != "end":
-                game_status = str(input("Sorry, that isn't an answer I'm looking for. Do you want to play again? (Please input either Start or End) "))
-                game_status = game_status.lower()
+        if game_status == "start":
             table_sticks = int(input("Tell me... how many sticks do you want on the table?: "))
             print("")
             while table_sticks < 10 or table_sticks > 100:
-                table_sticks = int(input("You can't have that many sticks on the table. How many sticks do you want on the table?: "))
+                table_sticks = int(
+                    input("You can't have that many sticks on the table. How many sticks do you want on the table?: "))
             print("")
             print("Let's go again!\n")
     print("Thank you for playing the Game of Sticks")
 
 main()
+
