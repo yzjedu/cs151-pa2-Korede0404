@@ -43,7 +43,7 @@ def main():
 
     print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     print("Hello! Welcome to the Game of Sticks!")
-    print("This is a game with two players. Your ")
+    print("This is a game for two players. Your ")
     print("third player will be the computer himself.")
     print("(This is him) --> *_*")
     print("You can call him 'Comedy.")
@@ -111,7 +111,7 @@ def main():
                     input("You can't have that many sticks on the table. How many sticks do you want on the table?: "))
             print("")
             print("Let's go again!\n")
-    print("Thank you for playing the Game of Sticks")
+    print("Thank you for playing the Game of Sticks!")
 
 main()
 
